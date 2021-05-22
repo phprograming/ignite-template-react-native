@@ -11,7 +11,16 @@ interface Task {
 }
 
 export function Home() {
+  const [theme, setTheme] = useState('light');
   const [tasks, setTasks] = useState<Task[]>([]);
+
+  function handleChangeTheme() {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
 
   function handleAddTask(newTaskTitle: string) {
     if (!newTaskTitle) return null;
@@ -44,11 +53,12 @@ export function Home() {
 
   return (
     <>
-      <Header />
+      <Header theme={theme} onUserAction={handleChangeTheme}/>
 
-      <TodoInput addTask={handleAddTask} />
+      <TodoInput theme={theme} addTask={handleAddTask} />
 
       <MyTasksList 
+        theme={theme}
         tasks={tasks} 
         onPress={handleMarkTaskAsDone} 
         onLongPress={handleRemoveTask} 

@@ -5,9 +5,10 @@ import checkIcon from '../assets/icons/Check.png';
 
 interface TodoInputProps {
   addTask: (task: string) => void;
+  theme: string;
 }
 
-export function TodoInput({ addTask }: TodoInputProps) {
+export function TodoInput({ addTask, theme }: TodoInputProps) {
   const [task, setTask] = useState('');
 
   function handleAddNewTask() {
